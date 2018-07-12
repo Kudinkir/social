@@ -14,7 +14,7 @@ class Images extends Model
      */
     public function getAvatarAttribute($user_id)
 	{
-	    return Images::where(['user_id', '=', $this->user_id], ['type', '=', 'avatar'])->get();
+	    return Images::where(['user_id', '=', $user_id], ['type', '=', 'avatar'])->get();
 	}
 
     /**
@@ -23,7 +23,7 @@ class Images extends Model
      */
 	public function getAllAttribute($user_id)
 	{
-	    return Images::where(['user_id', '=', $this->user_id])->get();
+	    return Images::where(['user_id', '=', $user_id])->get();
 	}
 
 }
