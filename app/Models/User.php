@@ -3,16 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Images;
+
 
 class User extends Model
 {
     protected $table = 'users';
-    protected $guarded = [];#какие отрибуты нельзя менять (сейчас все)
+    /**
+     * какие отрибуты нельзя менять (сейчас все)
+     * @var array
+     */
+    protected $guarded = [];
 
-    #protected $fillable = [];#какие отрибуты можно менять
-
-    protected $casts = [#будет автоматом преобразовывать содержимое в array 
+    /**
+     * будет автоматом преобразовывать содержимое в array
+     * @var array
+     */
+    protected $casts = [
         'interests' => 'array',
         'achievements' => 'array'
     ];
@@ -20,9 +26,10 @@ class User extends Model
     #Попридумывать всю хурму мира
 
     /**
+     * можно будет обращаться $this->name
      * @return string
      */
-    public function getNameAttribute() #можно будет обращаться $this->name
+    public function getNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
     }
@@ -82,7 +89,7 @@ class User extends Model
         }
         return [
             'list' => $cross_interests,
-            'count' => (count($this->getСrossingInterests($user_id))\count($this->interests()))*100
+            'count' => (count($friend->interests) / count($this->interests))*100
 	    ];
 	}
 
@@ -92,7 +99,7 @@ class User extends Model
     public function getShortInfo()
     {
         return [
-            'avatar' => Images::where(['user_id', '=', $this->id], ['type', '=', 'avatar'])->get(),
+            'avatar' => App\Models\Images::where(['user_id', '=', $this->id], ['type', '=', 'avatar'])->get(),
             'name'   => $this->getNameAttribute()
 
 	    ];
