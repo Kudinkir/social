@@ -22,13 +22,12 @@ class APIRegisterController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors());
         }
-        User::create([
+        $user = User::create([
             'first_name' => $request->get('name'),
             'email' => $request->get('email'),
             'last_name' => $request->get('last_name'),
             'password' => bcrypt($request->get('password')),
         ]);
-        $user = User::first();
         $token = JWTAuth::fromUser($user);
 
         return Response::json(compact('token'));
