@@ -15,18 +15,19 @@ class CreateImagesTable extends Migration
     {
          \DB::unprepared(<<<SQL
            create table if not exists images
-(
-    id serial not null
-        constraint images_pkey
-            primary key,
-    name varchar(255) not null,
-    thumbnail varchar(255) not null,
-    hash varchar(255) not null,
-    deleted_at timestamp(0),
-    created_at timestamp(0),
-    updated_at timestamp(0)
-)
-;
+            (
+                id serial not null
+                    constraint images_pkey
+                        primary key,
+                name varchar(255) not null,
+                thumbnail varchar(255) not null,
+                hash varchar(255) not null,
+                deleted_at timestamp(0),
+                created_at timestamp(0),
+                updated_at timestamp(0)
+            );
+SQL
+        );
     }
 
     /**

@@ -40,7 +40,7 @@ class User extends Authenticatable
      */
     public function images()
     {
-        return $this->belongsToMany('App\Model\Image', 'image_user', 'user_id', 'image_id');
+        return $this->belongsToMany('App\Model\Images', 'image_user', 'user_id', 'image_id');
     }
 
     /**
