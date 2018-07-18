@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Images extends Model
+class Image extends Model
 {
     protected $table = 'images';
 
@@ -14,7 +14,7 @@ class Images extends Model
      */
     public function getAvatarAttribute($user_id)
 	{
-	    return Images::where(['user_id', '=', $user_id], ['type', '=', 'avatar'])->get();
+	    return Image::where(['user_id', '=', $user_id], ['type', '=', 'avatar'])->get();
 	}
 
     /**
@@ -23,7 +23,7 @@ class Images extends Model
      */
 	public function getAllAttribute($user_id)
 	{
-	    return Images::where(['user_id', '=', $user_id])->get();
+	    return Image::where(['user_id', '=', $user_id])->get();
 	}
 
 }

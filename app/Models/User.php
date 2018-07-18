@@ -10,13 +10,11 @@ class User extends Authenticatable
 {
     protected $table = 'users';
     /**
-     * какие отрибуты нельзя менять (сейчас все)
      * @var array
      */
     protected $guarded = [];
 
     /**
-     * будет автоматом преобразовывать содержимое в array
      * @var array
      */
     protected $casts = [
@@ -24,10 +22,7 @@ class User extends Authenticatable
         'achievements' => 'array'
     ];
 
-    #Попридумывать всю хурму мира
-
     /**
-     * можно будет обращаться $this->name
      * @return string
      */
     public function getNameAttribute()
@@ -100,7 +95,7 @@ class User extends Authenticatable
     public function getShortInfo()
     {
         return [
-            'avatar' => App\Models\Images::where(['user_id', '=', $this->id], ['type', '=', 'avatar'])->get(),
+            'avatar' => App\Models\Image::where(['user_id', '=', $this->id], ['type', '=', 'avatar'])->get(),
             'name'   => $this->getNameAttribute()
 
 	    ];
